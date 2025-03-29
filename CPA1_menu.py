@@ -17,7 +17,7 @@ def main_menu():
         choice = input("Select a level: ")
 
         if choice == '1':
-            print("You selected Elementary. Staring quiz...\n")
+            print("You selected Elementary. Starting quiz...\n")
             import CPA1_ELEM_SECTION
             CPA1_ELEM_SECTION.math_practice_elem()
         elif choice == '2':
@@ -29,6 +29,8 @@ def main_menu():
             break
         else:
             print("Invalid choice. Please select a valid option.\n")
+
+        
 
 if __name__ == "__main__":
     main_menu()
