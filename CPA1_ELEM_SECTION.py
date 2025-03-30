@@ -42,15 +42,15 @@ def generate_pemdas():
         c = int(random.randint(1, 20))
         d = int(random.randint(1, 20))
 
-        operator1 =random.choice(["+", "-", "*", "//"])
-        operator2 =random.choice(["+", "-", "*", "//"])
-        operator3 =random.choice(["+", "-", "*", "//"])
+        operator1 =random.choice(["+", "-", "*", "/"])
+        operator2 =random.choice(["+", "-", "*", "/"])
+        operator3 =random.choice(["+", "-", "*", "/"])
 
-        if operator1 == "//" and b != 0:
+        if operator1 == "/" and b != 0:
             a = b * random.randint(1, 10)
-        if operator2 == "//" and c != 0:
+        if operator2 == "/" and c != 0:
             b = c * random.randint(1, 10)
-        if operator3 == "//" and c != 0:
+        if operator3 == "/" and c != 0:
             c = d * random.randint(1, 10)
 
 
@@ -69,7 +69,6 @@ def exponentiation():
 
 
 
-
         
 
 def get_user_input():
@@ -84,91 +83,112 @@ def get_user_input():
 def math_practice_elem():
     """Main function to ask user for topic and generate a question."""
     print("\nWelcome to the Elementary Math Practice Program!")
-    print("Select a topic:")
     
-    print("1. Addition")
-    print("2. Subtraction")
-    print("3. Multiplication")
-    print("4. Division")
-    print("5. PEMDAS")
-    print("6. Exponentiation")
-    print("7. Exit")
+    while True:
+        print("Select a topic:")
+        
 
-    choice = input("Enter the number of the topic you would like to practice: ")
+        
+        print("1. Addition")
+        print("2. Subtraction")
+        print("3. Multiplication")
+        print("4. Division")
+        print("5. PEMDAS")
+        print("6. Exponentiation")
+        print("7. Exit")
 
-                    
-    if choice == "1":
-        a,b = generate_addition()
-        print(f"What is the sum of {a} and {b}?")
-        correct_answer = a + b
-        user_answer = get_user_input()
-        while user_answer != correct_answer:
-            print(f"Incorrect. Try again\n")
-            print(f"What is the sum of {a} and {b}?")
-            user_answer = get_user_input()
-        print("Correct!\n")
-       
+        choice = input("Enter the number of the topic you would like to practice: ")
 
-    elif choice == "2":
-        a,b = generate_subtraction()
-        print(f"What is the difference of {a} and {b}?") 
-        user_answer = get_user_input()
-        correct_answer = a - b
-        while user_answer != correct_answer:
-            print(f"Incorrect. Try again\n")
-            print(f"What is the difference of {a} and {b}?") 
-            user_answer = get_user_input()
-        print("Correct!\n")
+        while True:            
+            if choice == "1":
+                a,b = generate_addition()
+                print(f"What is the sum of {a} and {b}?")
+                correct_answer = a + b
+                user_answer = get_user_input()
+                while user_answer != correct_answer:
+                    print(f"Incorrect. Try again\n")
+                    print(f"What is the sum of {a} and {b}?")
+                    user_answer = get_user_input()
+                print("Correct!\n")
+                
 
-    elif choice == "3":
-        a,b = generate_multiplication()
-        print(f"What is the product of {a} and {b}? ")
-        user_answer = get_user_input()
-        correct_answer = a * b
-        while user_answer != correct_answer:
-            print(f"Incorrect. Try again\n")
-            print(f"What is the product of {a} and {b}? ")
-            user_answer = get_user_input()
-        print("Correct!\n")
+            elif choice == "2":
+                a,b = generate_subtraction()
+                print(f"What is the difference of {a} and {b}?") 
+                user_answer = get_user_input()
+                correct_answer = a - b
+                while user_answer != correct_answer:
+                    print(f"Incorrect. Try again\n")
+                    print(f"What is the difference of {a} and {b}?") 
+                    user_answer = get_user_input()
+                print("Correct!\n")
+                
 
-    elif choice == "4":
-        a,b = generate_division()
-        print(f"What is the quotient of {a} and {b}? ")
-        user_answer = get_user_input()
-        correct_answer = a / b
-        while user_answer != correct_answer:
-            print(f"Incorrect. Try again\n")
-            print(f"What is the quotient of {a} and {b}? ")
-            user_answer = get_user_input()
-        print("Correct!\n")
-    
-    elif choice == "5":
-        a,b,c,d,operator1,operator2,operator3 = generate_pemdas()
-        print(f"What is the result of {a} {operator1} {b} {operator2} {c} {operator3} {d}? ")
-        user_answer = get_user_input()
-        correct_answer = eval(f"{a} {operator1} {b} {operator2} {c} {operator3} {d}")
-        while user_answer != correct_answer:
-            print(f"Incorrect. Try again\n")
-            print(f"What is the result of {a} {operator1} {b} {operator2} {c} {operator3} {d}? ")
-            user_answer = get_user_input()
-        print("Correct!\n")
-    
-    elif choice == "6":
-        a,b = exponentiation()
-        print(f"What is the result of {a}^{b}? ")
-        user_answer = get_user_input()
-        correct_answer = a ** b
-        while user_answer != correct_answer:
-            print(f"Incorrect. Try again\n")
-            print(f"What is the result of {a}^{b}? ")
-            user_answer = get_user_input()
-        print("Correct!\n")
+            elif choice == "3":
+                a,b = generate_multiplication()
+                print(f"What is the product of {a} and {b}? ")
+                user_answer = get_user_input()
+                correct_answer = a * b
+                while user_answer != correct_answer:
+                    print(f"Incorrect. Try again\n")
+                    print(f"What is the product of {a} and {b}? ")
+                    user_answer = get_user_input()
+                print("Correct!\n")
+                
+                
 
-    elif choice == "7":
-        print("Goodbye!")
-        exit()
-    else:
-        print("Invalid choice. Please try again.\n")
+            elif choice == "4":
+                a,b = generate_division()
+                print(f"What is the quotient of {a} and {b}? ")
+                user_answer = get_user_input()
+                correct_answer = a / b
+                while user_answer != correct_answer:
+                    print(f"Incorrect. Try again\n")
+                    print(f"What is the quotient of {a} and {b}? ")
+                    user_answer = get_user_input()
+                print("Correct!\n")
+                
+            
+            elif choice == "5":
+                a,b,c,d,operator1,operator2,operator3 = generate_pemdas()
+                print(f"What is the result of {a} {operator1} {b} {operator2} {c} {operator3} {d}? ")
+                user_answer = get_user_input()
+                correct_answer = eval(f"{a} {operator1} {b} {operator2} {c} {operator3} {d}")
+                while user_answer != correct_answer:
+                    print(f"Incorrect. Try again\n")
+                    print(f"What is the result of {a} {operator1} {b} {operator2} {c} {operator3} {d}? ")
+                    user_answer = get_user_input()
+                print("Correct!\n")
+                
+            
+            elif choice == "6":
+                a,b = exponentiation()
+                print(f"What is the result of {a}^{b}? ")
+                user_answer = get_user_input()
+                correct_answer = a ** b
+                while user_answer != correct_answer:
+                    print(f"Incorrect. Try again\n")
+                    print(f"What is the result of {a}^{b}? ")
+                    user_answer = get_user_input()
+                        
+                print("Correct!\n")
+
+
+            elif choice == "7":
+                print("Goodbye!")
+                return 
+            else:
+                print("Invalid choice. Please try again.\n")
+
+            repeat = input("Keep practicing this operation? (y/n): ").strip().lower()
+            if repeat == "n":
+                break  
+            elif repeat != "y":
+                print("Invalid input. Please enter 'y' or 'n'.")
+
+
+            
+            
 
         
 
