@@ -1,5 +1,5 @@
 import random
-from CPA1_ELEM_SECTION import get_user_input
+from CPA1_HS_SECTION2 import get_user_input
 
 #SEQUENCE TOPICS()
 
@@ -46,8 +46,8 @@ def harmonic_sequence():
 
 def fibonacci_sequence():
     """generate a fibonacci sequence question"""
-    sequence = [0, 1, 1]
-    length = random.randint(5, 10)
+    sequence = [0, 1, 1, 2, 3]
+    length = random.randint(7, 50)
     for i in range(2, length):
         sequence.append(sequence[i - 1] + sequence[i - 2])
     print(f"\nWhat is the next term in this sequence?\n{sequence}")

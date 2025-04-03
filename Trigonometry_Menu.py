@@ -3,6 +3,7 @@
 import random
 import math
 from fractions import Fraction
+import Trigonometric_Questions
 
 
 def trigonometry_menu():

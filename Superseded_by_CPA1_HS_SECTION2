@@ -1,0 +1,164 @@
+import random
+import math
+
+def generate_linear_equation():
+    """Generate and solve a simple linear equation: ax + b = c"""
+    a = random.randint(1, 10)
+    b = random.randint(1, 20)
+    x = random.randint(1, 10)
+    c = a * x + b
+    print(f"Solve for x: {a}x + {b} = {c}")
+    return x
+
+def generate_quadratic_equation():
+    """Generate and solve a quadratic equation with integer roots"""
+    r1 = random.randint(1, 10)
+    r2 = random.randint(1, 10)
+    a = 1
+    b = -(r1 + r2)
+    c = r1 * r2
+    print(f"Solve for x: x² + ({b})x + ({c}) = 0")
+    return sorted([r1, r2])
+
+def generate_factoring():
+    """Generate a trinomial to factor: x^2 + bx + c"""
+    r1 = random.randint(1, 10)
+    r2 = random.randint(1, 10)
+    b = r1 + r2
+    c = r1 * r2
+    print(f"Factor: x² + {b}x + {c}")
+    return sorted([r1, r2])
+
+def generate_system_of_equations():
+    """Generate a system of 2 equations with a unique integer solution"""
+    x = random.randint(1, 10)
+    y = random.randint(1, 10)
+    a1, b1 = random.randint(1, 5), random.randint(1, 5)
+    a2, b2 = random.randint(1, 5), random.randint(1, 5)
+    c1 = a1*x + b1*y
+    c2 = a2*x + b2*y
+    print(f"Solve the system:\n  {a1}x + {b1}y = {c1}\n  {a2}x + {b2}y = {c2}")
+    return x, y
+
+def generate_arithmetic():
+    """Evaluate expressions like a^b"""
+    start = random.randint(-10, 20)
+    diff = random.randint(1, 10)
+    length = random.randint(5, 10)
+    sequence = []
+    for i in range(length):
+        sequence.append(start + i * diff)
+    print(f"\nWhat is the next term in this sequence?\n{sequence}")
+    next_term = sequence[-1] + diff
+    return next_term
+
+def generate_trig_question():
+    """Solve for a side using basic trig (SOHCAHTOA)"""
+    side = random.choice(["opposite", "adjacent"])
+    angle = random.randint(30, 60)
+    hypotenuse = random.randint(10, 20)
+
+    if side == "opposite":
+        correct = round(hypotenuse * math.sin(math.radians(angle)))
+        print(f"Given angle = {angle}°, hypotenuse = {hypotenuse}, find the opposite side (round to nearest integer).")
+    else:
+        correct = round(hypotenuse * math.cos(math.radians(angle)))
+        print(f"Given angle = {angle}°, hypotenuse = {hypotenuse}, find the adjacent side (round to nearest integer).")
+    
+    return correct
+
+def get_user_input():
+    while True:
+        try:
+            return int(input("Answer: "))
+        except ValueError:
+            print("Invalid input! Please enter a number.")
+
+def math_practice_highschool():
+    print("\n🎓 Welcome to the High School Math Practice Program!")
+
+    while True:
+        print("\nSelect a topic:")
+        print("1. Solving Linear Equations")
+        print("2. Solving Quadratic Equations")
+        print("3. Factoring Trinomials")
+        print("4. Solving Systems of Equations")
+        print("5. Arithmetic Sequences")
+        print("6. Trigonometry (Right Triangle)")
+        print("7. Exit")
+
+        choice = input("Enter your choice: ")
+
+        while True:
+            if choice == "1":
+                correct = generate_linear_equation()
+                answer = get_user_input()
+                while answer != correct:
+                    print("Incorrect. Try again.")
+                    answer = get_user_input()
+                print("Correct!")
+
+            elif choice == "2":
+                correct = generate_quadratic_equation()
+                print("Enter the two integer solutions, smallest first.")
+                answer1 = get_user_input()
+                answer2 = get_user_input()
+                while sorted([answer1, answer2]) != correct:
+                    print("Incorrect. Try again.")
+                    answer1 = get_user_input()
+                    answer2 = get_user_input()
+                print("Correct!")
+
+            elif choice == "3":
+                correct = generate_factoring()
+                print("Enter the two numbers that factor the trinomial.")
+                answer1 = get_user_input()
+                answer2 = get_user_input()
+                while sorted([answer1, answer2]) != correct:
+                    print("Incorrect. Try again.")
+                    answer1 = get_user_input()
+                    answer2 = get_user_input()
+                print("Correct!")
+
+            elif choice == "4":
+                x_correct, y_correct = generate_system_of_equations()
+                print("Enter the values of x and y:")
+                x_ans = get_user_input()
+                y_ans = get_user_input()
+                while (x_ans, y_ans) != (x_correct, y_correct):
+                    print("Incorrect. Try again.")
+                    x_ans = get_user_input()
+                    y_ans = get_user_input()
+                print("Correct!")
+
+            elif choice == "5":
+                correct_answer = generate_arithmetic()
+                user_answer = get_user_input()
+                while user_answer != correct_answer:
+                    print("Incorrect. Try again.")
+                    user_answer = get_user_input()
+                print("Correct!\n")
+
+            elif choice == "6":
+                correct = generate_trig_question()
+                answer = get_user_input()
+                while answer != correct:
+                    print("Incorrect. Try again.")
+                    answer = get_user_input()
+                print("Correct!")
+
+            elif choice == "7":
+                print("Goodbye!")
+                return
+            else:
+                print("Invalid choice. Please try again.")
+
+            repeat = input("Practice this topic again? (y/n): ").strip().lower()
+            if repeat == "y":
+                continue
+            else:
+                break
+            
+
+if __name__ == "__main__":
+    math_practice_highschool()
