@@ -51,20 +51,6 @@ def fibonacci_sequence():
     print(f"\nWhat is the next term in this sequence?\n{sequence}")
     next_term = sequence[-1] + sequence[-2]
     return next_term
-
-def sequences_menu():
-    """Main menu for sequence topics."""
-    print("\nWelcome to the Sequences Section!")
-
-    while True:
-        print("\nSelect a topic:")
-        print("1. Arithmetic Sequences")
-        print("2. Geometric Sequences")
-        print("3. Harmonic Sequences")
-        print("4. Fibonacci Sequences")
-        print("5. Exit")
-
-        choice = input("Enter the number of the topic you would like to practice: ")
         
 def sequences_menu(score, streak):
     """Main menu for sequence topics."""
@@ -79,6 +65,7 @@ def sequences_menu(score, streak):
         print("5. Exit")
 
         choice = input("Enter the number of the topic you would like to practice: ")
+        
         if choice == "1":
             print("You selected Arithmetic Sequences. Starting quiz...\n")
             correct_answer = arithmetic_sequence()
@@ -130,5 +117,6 @@ def sequences_menu(score, streak):
     return score, streak
 
 if __name__ == "__main__":
+    score, streak = 0, 0
     sequences_menu()
 
