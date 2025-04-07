@@ -133,6 +133,12 @@ def math_practice_elem():
         print("7. Exit")
 
         choice = input("Enter the number of the topic you would like to practice: ")
+        if choice not in ("1", "2", "3", "4", "5", "6"):
+            print("Invalid choice. Please select a valid option.\n")
+            continue
+        if choice == "7":
+            print("Thank you for playing! Goodbye!")
+            break
 
         while True:
             if choice == "1":
@@ -243,13 +249,6 @@ def math_practice_elem():
                         print(f"What is the result of {a}^{b}?")
                         user_answer = get_user_input()
                     print("Correct!\n")
-
-            elif choice == "7":
-                print(f"Goodbye! Your final score is: {score}")
-                return
-            else:
-                print("Invalid choice. Please try again.\n")
-                break
 
             repeat = input("Keep practicing this operation? (y/n): ").strip().lower()
             if repeat == "n":
