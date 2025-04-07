@@ -17,8 +17,8 @@ def main_menu():
 
         if choice == '1':
             print("You selected Elementary. Starting quiz...\n")
-            import IGNORE
-            IGNORE.math_practice_elem()
+            import CPA1_ELEM_SECTION
+            CPA1_ELEM_SECTION.math_practice_elem()
         elif choice == '2':
             print("You selected Junior High School. Starting quiz...\n")
             import CPA1_HS_SECTION2
