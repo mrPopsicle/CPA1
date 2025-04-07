@@ -174,7 +174,12 @@ def algebra_menu(score, streak):
     """Main menu for algebra topics."""
 
     print("\nWelcome to the Algebra Section!")
-
+    if choice not in ("1", "2", "3", "4", "5", "6"):
+        print("Invalid choice. Please select a valid option.\n")
+        continue
+    if choice == "7":
+        print("Thank you for playing! Goodbye!")
+        break
     while True:
         print("\nSelect a topic:")
         print("1. Linear Equations")
