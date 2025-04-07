@@ -1,7 +1,7 @@
 """This file contains the code for the submenu for Trigonometry."""
 # Importing the necessary modules for the program.
 import Trigonometric_Questions
-from CPA1_HS_SECTION2 import get_user_input
+from CPA1_HS_SECTION2 import get_user_input, update_score
 
 def trigonometry_menu(score, streak):
     """Main menu for trigonometry topics."""
@@ -25,6 +25,7 @@ def trigonometry_menu(score, streak):
                 user_answer = get_user_input()
             print("Correct!\n")
             score, streak = update_score(True, streak, score)
+            
         elif choice == "2":
             print("You selected Inverse Trigonometry. Starting quiz...\n")
             correct_answer = Trigonometric_Questions.inverse_trig()
@@ -34,6 +35,7 @@ def trigonometry_menu(score, streak):
                 user_answer = get_user_input()
             print("Correct!\n")
             score, streak = update_score(True, streak, score)
+            
         elif choice == "3":
             print("You selected Right Triangle. Starting quiz...\n")
             correct_answer = Trigonometric_Questions.right_triangle()
@@ -43,6 +45,7 @@ def trigonometry_menu(score, streak):
                 user_answer = get_user_input()
             print("Correct!\n")
             score, streak = update_score(True, streak, score)
+            
         elif choice == "4":
             print("Thank you for playing! Your final score is {score}. Goodbye!")
             break
