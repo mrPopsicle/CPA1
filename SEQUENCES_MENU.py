@@ -4,7 +4,7 @@ and quizzes the user on them. It includes the arithmetic, geometric, harmonic, a
 It also provides a menu for the user to select which type of sequence they want to practice.
 """
 import random
-from CPA1_HS_SECTION2 import get_user_input
+from CPA1_HS_SECTION2 import get_user_input, update_score
 
 def arithmetic_sequence():
     """generate an arithmetic sequence question"""
@@ -103,7 +103,7 @@ def sequences_menu(score, streak):
             print("Correct!\n")
             score, streak = update_score(True, streak, score)
         elif choice == "5":
-            print("Thank you for playing! Goodbye!")
+            print("Thank you for playing! Your final score is {score}. Goodbye!")
             break
         else:
             print("Invalid choice. Please select a valid option.\n")
