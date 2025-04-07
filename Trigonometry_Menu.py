@@ -3,7 +3,7 @@
 import Trigonometric_Questions
 from CPA1_HS_SECTION2 import get_user_input
 
-def trigonometry_menu():
+def trigonometry_menu(score, streak):
     """Main menu for trigonometry topics."""
     print("\nWelcome to the Trigonometry Quiz Section!")
 
@@ -24,7 +24,7 @@ def trigonometry_menu():
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
-        
+            score, streak = update_score(True, streak, score)
         elif choice == "2":
             print("You selected Inverse Trigonometry. Starting quiz...\n")
             correct_answer = Trigonometric_Questions.inverse_trig()
@@ -33,7 +33,7 @@ def trigonometry_menu():
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
-        
+            score, streak = update_score(True, streak, score)
         elif choice == "3":
             print("You selected Right Triangle. Starting quiz...\n")
             correct_answer = Trigonometric_Questions.right_triangle()
@@ -42,9 +42,9 @@ def trigonometry_menu():
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
-        
+            score, streak = update_score(True, streak, score)
         elif choice == "4":
-            print("Thank you for playing! Goodbye!")
+            print("Thank you for playing! Your final score is {score}. Goodbye!")
             break
         
         else:
@@ -55,7 +55,9 @@ def trigonometry_menu():
             continue
         else:
             break
+    return score, streak
 
     
 if __name__ == "__main__":
-    trigonometry_menu()
+    score, streak = 0, 0
+    trigonometry_menu(score, streak)
