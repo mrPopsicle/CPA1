@@ -29,7 +29,7 @@ def math_practice_highschool():
             print("You selected Algebra...\n")
             score, streak = Algebra_Menu.algebra_menu(score, streak)   
         elif choice == '3':
-            print("You selected Senior High School. Starting quiz...\n")
+            print("You selected Trigonometry...\n")
             score, streak = Trigonometry_Menu.trigonometry_menu(score, streak)
         elif choice == '4':
             print("Thank you for playing! Your final score is {score}. Goodbye!")
