@@ -65,56 +65,56 @@ def sequences_menu(score, streak):
         print("5. Exit")
 
         choice = input("Enter the number of the topic you would like to practice: ")
-        
-        if choice == "1":
-            print("You selected Arithmetic Sequences. Starting quiz...\n")
-            correct_answer = arithmetic_sequence()
-            user_answer = get_user_input()
-            while user_answer != correct_answer:
-                print("Incorrect. Try again.")
+        while True:
+            if choice == "1":
+                print("You selected Arithmetic Sequences. Starting quiz...\n")
+                correct_answer = arithmetic_sequence()
                 user_answer = get_user_input()
-            print("Correct!\n")
-            score, streak = update_score(True, streak, score)
-        elif choice == "2":
-            print("You selected Geometric Sequences. Starting quiz...\n")
-            correct_answer == geometric_sequence()
-            user_answer = get_user_input()
-            while user_answer != correct_answer:
-                print("Incorrect. Try again.")
+                while user_answer != correct_answer:
+                    print("Incorrect. Try again.")
+                    user_answer = get_user_input()
+                print("Correct!\n")
+                score, streak = update_score(True, streak, score)
+            elif choice == "2":
+                print("You selected Geometric Sequences. Starting quiz...\n")
+                correct_answer == geometric_sequence()
                 user_answer = get_user_input()
-            print("Correct!\n")
-            score, streak = update_score(True, streak, score)
-        elif choice == "3":
-            print("You selected Harmonic Sequences. Starting quiz...\n")
-            correct_answer == harmonic_sequence()
-            user_answer = get_user_input()
-            while user_answer != correct_answer:
-                print("Incorrect. Try again.")
+                while user_answer != correct_answer:
+                    print("Incorrect. Try again.")
+                    user_answer = get_user_input()
+                print("Correct!\n")
+                score, streak = update_score(True, streak, score)
+            elif choice == "3":
+                print("You selected Harmonic Sequences. Starting quiz...\n")
+                correct_answer == harmonic_sequence()
                 user_answer = get_user_input()
-            print("Correct!\n")
-            score, streak = update_score(True, streak, score)
-        elif choice == "4":
-            print("You selected Fibonacci Sequences. Starting quiz...\n")
-            fibonacci_sequence()
-            user_answer = get_user_input()
-            while user_answer != correct_answer:
-                print("Incorrect. Try again.")
+                while user_answer != correct_answer:
+                    print("Incorrect. Try again.")
+                    user_answer = get_user_input()
+                print("Correct!\n")
+                score, streak = update_score(True, streak, score)
+            elif choice == "4":
+                print("You selected Fibonacci Sequences. Starting quiz...\n")
+                fibonacci_sequence()
                 user_answer = get_user_input()
-            print("Correct!\n")
-            score, streak = update_score(True, streak, score)
-        elif choice == "5":
-            print("Thank you for playing! Your final score is {score}. Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please select a valid option.\n")
-
-        repeat = input("Practice this topic again? (y/n): ").strip().lower()
-        if repeat == "y":
-            continue
-        else:
-            break
-            
-    return score, streak
+                while user_answer != correct_answer:
+                    print("Incorrect. Try again.")
+                    user_answer = get_user_input()
+                print("Correct!\n")
+                score, streak = update_score(True, streak, score)
+            elif choice == "5":
+                print("Thank you for playing! Your final score is {score}. Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please select a valid option.\n")
+    
+            repeat = input("Practice this topic again? (y/n): ").strip().lower()
+            if repeat == "y":
+                continue
+            else:
+                break
+                
+        return score, streak
 
 if __name__ == "__main__":
     score, streak = 0, 0
