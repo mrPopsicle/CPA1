@@ -15,10 +15,10 @@ def trigonometry_menu(score, streak):
         print("4. Exit")
 
         choice = input("Enter the number of the topic you would like to practice: ")
-        if choice not in ("1", "2", "3", "4", "5", "6"):
+        if choice not in ("1", "2", "3"):
             print("Invalid choice. Please select a valid option.\n")
             continue
-        if choice == "7":
+        if choice == "4":
             print("Thank you for playing! Goodbye!")
             break
 
