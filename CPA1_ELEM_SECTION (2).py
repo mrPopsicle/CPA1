@@ -2,7 +2,13 @@ import random
 
 def generate_addition():
     """Generate an addition question."""
-
+    print(r"""
+       .     .
+        \___/
+       -= * =-
+        /   \
+       '     '
+    """)
     a = int(random.randint(1, 100))
     b = int(random.randint(1, 100))
     print(a, "+", b)
@@ -10,7 +16,12 @@ def generate_addition():
 
 def generate_subtraction():
     """Generate an subtraction question."""
-
+    print(r"""
+        .---.
+     _/     \_
+    '-.     .-'
+      `~~~`
+    """)
     a = int(random.randint(1, 100))
     b = int(random.randint(1, 100))
     print(a, "-", b)
@@ -18,7 +29,13 @@ def generate_subtraction():
 
 def generate_multiplication():  
     """Generate an multiplication question."""
-    
+    print(r"""
+       \   |   /
+        .-----.
+    -=(       )=-
+        '-----'
+       /   |   \
+    """)
     a = int(random.randint(1, 100))
     b = int(random.randint(1, 100))
     print(a, "x", b)
@@ -26,15 +43,27 @@ def generate_multiplication():
 
 def generate_division():  
     """Generate an division question."""
-    
+    print(r"""
+       .---.
+     /     \
+    | () () |
+     \  ^  /
+      |||||
+    """)
     a = b * int(random.randint(1, 100))
     b = int(random.randint(1, 100))
     print(a, "/", b)
     return a,b
 
-
 def generate_pemdas():
     """Generate an pemdas question."""
+    print(r"""
+       _____
+     .'     '.
+    | () () () |
+     \  ^  ^  /
+      |||||||
+    """)
     while True:
 
         a = int(random.randint(1, 20))
@@ -62,6 +91,13 @@ def generate_pemdas():
 
 def exponentiation():
     """Generate an exponentiation question."""
+    print(r"""
+         /^\
+        /___\
+       |=o o=|
+        \_^_/
+        |||||
+    """)
     a = int(random.randint(1, 20))
     b = int(random.randint(1, 5))
     print(f"{a}^{b}")
@@ -80,9 +116,9 @@ def math_practice_elem():
     """
     Main function to ask user for topic and generate a question.
     Tracks the score for each correct answer.
-    Gives x2 points on for correct answer streaks.
+    Gives x2 points for correct answer streaks.
     """
-    print("\nWelcome to the Elementary Math Practice Program!")
+    print("\nWelcome to the Elementary Math Invaders Program!")
     score = 0
     streak = 0
 
