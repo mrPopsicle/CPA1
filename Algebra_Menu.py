@@ -174,12 +174,8 @@ def algebra_menu(score, streak):
     """Main menu for algebra topics."""
 
     print("\nWelcome to the Algebra Section!")
-    if choice not in ("1", "2", "3", "4", "5", "6"):
-        print("Invalid choice. Please select a valid option.\n")
-        continue
-    if choice == "7":
-        print("Thank you for playing! Goodbye!")
-        break
+
+
     while True:
         print("\nSelect a topic:")
         print("1. Linear Equations")
@@ -191,6 +187,9 @@ def algebra_menu(score, streak):
         print("7. Exit")
 
         choice = input("Enter your choice: ")
+        if choice not in ("1", "2", "3", "4", "5", "6"):
+            print("Invalid choice. Please select a valid option.\n")
+            continue
         
         if choice == "1":
             print("You selected Linear Equations. Starting quiz...\n")
@@ -262,10 +261,7 @@ def algebra_menu(score, streak):
         elif choice == "7":
             print(f"Exiting Algebra section. Your final score is {score}. Goodbye!")
             break
-        
-        else:
-            print("Invalid choice. Please select a valid option.\n")
-            continue
+
     
         repeat = input("Would you like to continue? (y/n): ").strip().lower()
         if repeat == "n":
