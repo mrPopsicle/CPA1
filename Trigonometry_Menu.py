@@ -19,7 +19,7 @@ def trigonometry_menu(score, streak):
             print("Invalid choice. Please select a valid option.\n")
             continue
         if choice == "4":
-            print("Thank you for playing! Goodbye!")
+            print(f"Exiting Trigonometry section. Your final score is {score}. Goodbye")
             break
 
         while True:
