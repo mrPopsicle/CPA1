@@ -63,8 +63,14 @@ def sequences_menu(score, streak):
         print("3. Harmonic Sequences")
         print("4. Fibonacci Sequences")
         print("5. Exit")
-
+        if choice not in ("1", "2", "3", "4"):
+            print("Invalid choice. Please select a valid option.\n")
+            continue
+        if choice == "5":
+            print("Thank you for playing! Goodbye!")
+            break
         choice = input("Enter the number of the topic you would like to practice: ")
+        
         while True:
             if choice == "1":
                 print("You selected Arithmetic Sequences. Starting quiz...\n")
@@ -102,11 +108,6 @@ def sequences_menu(score, streak):
                     user_answer = get_user_input()
                 print("Correct!\n")
                 score, streak = update_score(True, streak, score)
-            elif choice == "5":
-                print("Thank you for playing! Your final score is {score}. Goodbye!")
-                break
-            else:
-                print("Invalid choice. Please select a valid option.\n")
     
             repeat = input("Practice this topic again? (y/n): ").strip().lower()
             if repeat == "y":
