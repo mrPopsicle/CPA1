@@ -3,15 +3,17 @@ import math
 from CPA1_HS_SECTION2 import get_user_input
 
 
-
-
 def linear_equation():
     """Generate a linear equation question"""
     a = random.randint(1, 10)
     b = random.randint(5, 25)
     c = random.randint(1, 100)
     d = random.randint(1, 70)
-    
+
+    # ensure a and d are not equal to avoid division by zero
+    # and ensure a is not equal to d to avoid infinite solutions
+    while a == d:
+        d = random.randint(1, 70)
     equation_type = random.choice(["ver1", "ver2", "distributive"])
     
     if equation_type == "ver1":
@@ -49,25 +51,30 @@ def quadratic_equation():
 
 def system_of_equations():
     """Generate a system of equations question"""
-   
     x = random.randint(1, 10)
     y = random.randint(1, 10)
-    
-   
+
     a = random.randint(1, 10)
     b = random.randint(1, 10)
     c = random.randint(1, 10)
     d = random.randint(1, 10)
-    
+
+    # Ensure the system is solvable 
+    while a * d == b * c:
+        a = random.randint(1, 10)
+        b = random.randint(1, 10)
+        c = random.randint(1, 10)
+        d = random.randint(1, 10)
     
     e = a * x + b * y
     f = c * x + d * y
-    
+
     print("Solve the system:")
     print(f"{a}x + {b}y = {e}")
     print(f"{c}x + {d}y = {f}")
-    
+
     return x, y
+
 
 
 def rational_expression():
@@ -76,19 +83,22 @@ def rational_expression():
     b = random.randint(1, 10)
     c = random.randint(1, 10)
     d = random.randint(1, 10)
-    
+
+    # Ensure b and d are non-zero to avoid division by zero
+    while b == 0 or d == 0:
+        b = random.randint(1, 10)
+        d = random.randint(1, 10)
+
     print(f"Simplify: {a}/{b} + {c}/{d}")
-    
-    
+
     numerator = a * d + b * c
     denominator = b * d
-    
-   
-    
+
     gcd = math.gcd(numerator, denominator)
     result = numerator / denominator
-    
+
     return result
+
 
 
 def factoring_trinomials():
@@ -160,25 +170,23 @@ def rules_of_exponents():
     
     return x, string_answer
 
-
-
-def algebra_menu():
+def algebra_menu(score, streak):
     """Main menu for algebra topics."""
 
     print("\nWelcome to the Algebra Section!")
 
-while True:
-    print("\nSelect a topic:")
-    print("1. Linear Equations")
-    print("2. Quadratic Equations")
-    print("3. System of Equations")
-    print("4. Rational Expressions")
-    print("5. Factoring Trinomials") 
-    print("6. Rules of Exponents")    
-    print("7. Exit")
-
-    choice = input("Enter your choice: ")
     while True:
+        print("\nSelect a topic:")
+        print("1. Linear Equations")
+        print("2. Quadratic Equations")
+        print("3. System of Equations")
+        print("4. Rational Expressions")
+        print("5. Factoring Trinomials") 
+        print("6. Rules of Exponents")    
+        print("7. Exit")
+
+        choice = input("Enter your choice: ")
+        
         if choice == "1":
             print("You selected Linear Equations. Starting quiz...\n")
             answer = linear_equation()
@@ -187,8 +195,9 @@ while True:
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
-        
-        elif choice == "2":
+            score, streak = update_score(True, streak, score)
+            
+         elif choice == "2":
             print("You selected Quadratic Equations. Starting quiz...\n")
             answer = quadratic_equation()
             user_answer = get_user_input()
@@ -196,7 +205,8 @@ while True:
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
-        
+            score, streak = update_score(True, streak, score)
+             
         elif choice == "3":
             print("You selected System of Equations. Starting quiz...\n")
             answer_x, answer_y = system_of_equations()
@@ -212,7 +222,8 @@ while True:
                 print("Enter the value of y:")
                 user_answer_y = get_user_input()
             print("Correct!\n")
-        
+            score, streak = update_score(True, streak, score)
+            
         elif choice == "4":
             print("You selected Rational Expressions. Starting quiz...\n")
             answer = rational_expression()
@@ -221,7 +232,8 @@ while True:
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
-        
+            score, streak = update_score(True, streak, score)
+            
         elif choice == "5":
             print("You selected Factoring Trinomials. Starting quiz...\n")
             answer = factoring_trinomials()
@@ -230,7 +242,8 @@ while True:
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
-
+            score, streak = update_score(True, streak, score)
+    
         elif choice == "6":
             print("You selected Rules of Exponent. Starting quiz...\n")
             answer, string_answer = rules_of_exponents()
@@ -239,18 +252,16 @@ while True:
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
-        
+            score, streak = update_score(True, streak, score)
+            
         elif choice == "7":
-            print("Exiting Algebra section. Goodbye!")
+            print(f"Exiting Algebra section. Your final score is {score}. Goodbye!")
             break
-    
+        
         else:
             print("Invalid choice. Please select a valid option.\n")
             continue
-
-
-
-
+    
         repeat = input("Would you like to continue? (y/n): ").strip().lower()
         if repeat == "n":
             break
@@ -259,15 +270,12 @@ while True:
         else:
             print("Invalid choice. Please select a valid option.\n")
             continue
- 
 
-
-
-    
-
-
+    return score, streak
 
 
 if __name__ == "__main__":
+    score, streak = 0, 0
     algebra_menu()
+    
     

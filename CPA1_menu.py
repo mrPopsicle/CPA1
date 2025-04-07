@@ -1,18 +1,17 @@
 # %%
 def main_menu():
     while True:
-        print("*" * 32)
-        print("*" + " " * 30 + "*")
-        print("* Welcome to the Math Practice App! *") # Change name?
-        print("*" + " " * 30 + "*")
-        print("*" * 32)
+        print("*" * 40)
+        print("*" + " " * 38 + "*")
+        print("*    Welcome to the Math Practice App!    *") # Change name?
+        print("*" + " " * 38 + "*")
+        print("*" * 40)
         print("\n")
 
         # Options
         print("1. Elementary School")
-        print("2. Junior High School")
-        print("3. Senior High School")
-        print("4. Exit")
+        print("2. High School")
+        print("3. Exit")
 
         choice = input("Select a level: ")
 
@@ -23,10 +22,8 @@ def main_menu():
         elif choice == '2':
             print("You selected Junior High School. Starting quiz...\n")
             import CPA1_HS_SECTION2
-            CPA1_HS_SECTION2.math_practice_hs()
+            CPA1_HS_SECTION2.math_practice_highschool()
         elif choice == '3':
-            print("You selected Senior High School. Starting quiz...\n")
-        elif choice == '4':
             print("Thank you for playing! Goodbye!")
             break
         else:

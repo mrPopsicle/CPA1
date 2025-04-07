@@ -1,43 +1,66 @@
 """This file contains the code for the submenu for Trigonometry."""
+# Importing the necessary modules for the program.
+import Trigonometric_Questions
+from CPA1_HS_SECTION2 import get_user_input, update_score
 
-import random
-import math
-from fractions import Fraction
-
-
-def trigonometry_menu():
+def trigonometry_menu(score, streak):
     """Main menu for trigonometry topics."""
-    print("\nWelcome to the Trigonometry Section!")
+    print("\nWelcome to the Trigonometry Quiz Section!")
 
     while True:
         print("\nSelect a topic:")
         print("1. Unit Circle")
-        print("2. Right Triangles")
-        print("3. Trignometric Identities")
-        print("4. Inverse Trigonometric Functions")
-        print("5. Trigonometric Equations")
-        print("6. Trigonometric Functions")
-        print("7. Exit")
-        
-        choice = input("Enter your choice: ")
+        print("2. Inverse Trigonometry")
+        print("3. Right Triangle")
+        print("4. Exit")
 
+        choice = input("Enter the number of the topic you would like to practice: ")
+        
         if choice == "1":
             print("You selected Unit Circle. Starting quiz...\n")
-            unit_circle()
+            correct_answer = Trigonometric_Questions.unit_circle()
+            user_answer = get_user_input()
+            while user_answer != correct_answer:
+                print("Incorrect. Try again.")
+                user_answer = get_user_input()
+            print("Correct!\n")
+            score, streak = update_score(True, streak, score)
+            
         elif choice == "2":
-            print("Right Triangles. Starting quiz...\n")
+            print("You selected Inverse Trigonometry. Starting quiz...\n")
+            correct_answer = Trigonometric_Questions.inverse_trig()
+            user_answer = get_user_input()
+            while user_answer != correct_answer:
+                print("Incorrect. Try again.")
+                user_answer = get_user_input()
+            print("Correct!\n")
+            score, streak = update_score(True, streak, score)
+            
         elif choice == "3":
-            print("Trignometric Identities. Starting quiz...\n")
+            print("You selected Right Triangle. Starting quiz...\n")
+            correct_answer = Trigonometric_Questions.right_triangle()
+            user_answer = get_user_input()
+            while user_answer != correct_answer:
+                print("Incorrect. Try again.")
+                user_answer = get_user_input()
+            print("Correct!\n")
+            score, streak = update_score(True, streak, score)
+            
         elif choice == "4":
-            print("Inverse Trigonometric Functions. Starting quiz...\n")
-        elif choice == "5":
-            print("Trigonometric Equations. Starting quiz...\n")
-        else:
-            print("Thank you for playing! Goodbye!")
+            print("Thank you for playing! Your final score is {score}. Goodbye!")
             break
         
+        else:
+            print("Invalid choice. Please select a valid option.\n")
 
+        repeat = input("Practice this topic again? (y/n): ").strip().lower()
+        if repeat == "y":
+            continue
+        else:
+            break
+    return score, streak
 
     
 if __name__ == "__main__":
-    trigonometry_menu()
+    score, streak = 0, 0
+    trigonometry_menu(score, streak)

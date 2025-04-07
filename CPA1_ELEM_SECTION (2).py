@@ -65,11 +65,7 @@ def exponentiation():
     a = int(random.randint(1, 20))
     b = int(random.randint(1, 5))
     print(f"{a}^{b}")
-    return a,b
-
-
-
-        
+    return a,b     
 
 def get_user_input():
     """Get the user's input for the question."""
@@ -79,20 +75,19 @@ def get_user_input():
             return user_input
         except ValueError:
             print("Invalid input! Please enter a number.")
-
+            
 def math_practice_elem():
     """
     Main function to ask user for topic and generate a question.
     Tracks the score for each correct answer.
+    Gives x2 points on for correct answer streaks.
     """
     print("\nWelcome to the Elementary Math Practice Program!")
     score = 0
+    streak = 0
 
     while True:
         print("Select a topic:")
-        
-
-        
         print("1. Addition")
         print("2. Subtraction")
         print("3. Multiplication")
@@ -103,102 +98,130 @@ def math_practice_elem():
 
         choice = input("Enter the number of the topic you would like to practice: ")
 
-        while True:            
+        while True:
             if choice == "1":
-                a,b = generate_addition()
+                a, b = generate_addition()
                 print(f"What is the sum of {a} and {b}?")
                 correct_answer = a + b
                 user_answer = get_user_input()
-                while user_answer != correct_answer:
-                    print(f"Incorrect. Try again\n")
-                    print(f"What is the sum of {a} and {b}?")
-                    user_answer = get_user_input()
-                print("Correct!\n")
-                score += 1
-                
+                if user_answer == correct_answer:
+                    streak += 1
+                    points = 2 if streak >= 2 else 1
+                    score += points
+                    print(f"Correct! (+{points} points)\n")
+                else:
+                    streak = 0
+                    while user_answer != correct_answer:
+                        print(f"Incorrect. Try again\n")
+                        print(f"What is the sum of {a} and {b}?")
+                        user_answer = get_user_input()
+                    print("Correct!\n")
 
             elif choice == "2":
-                a,b = generate_subtraction()
-                print(f"What is the difference of {a} and {b}?") 
-                user_answer = get_user_input()
+                a, b = generate_subtraction()
+                print(f"What is the difference of {a} and {b}?")
                 correct_answer = a - b
-                while user_answer != correct_answer:
-                    print(f"Incorrect. Try again\n")
-                    print(f"What is the difference of {a} and {b}?") 
-                    user_answer = get_user_input()
-                print("Correct!\n")
-                score += 1
-                
+                user_answer = get_user_input()
+                if user_answer == correct_answer:
+                    streak += 1
+                    points = 2 if streak >= 2 else 1
+                    score += points
+                    print(f"Correct! (+{points} points)\n")
+                else:
+                    streak = 0
+                    while user_answer != correct_answer:
+                        print(f"Incorrect. Try again\n")
+                        print(f"What is the difference of {a} and {b}?")
+                        user_answer = get_user_input()
+                    print("Correct!\n")
 
             elif choice == "3":
-                a,b = generate_multiplication()
-                print(f"What is the product of {a} and {b}? ")
-                user_answer = get_user_input()
+                a, b = generate_multiplication()
+                print(f"What is the product of {a} and {b}?")
                 correct_answer = a * b
-                while user_answer != correct_answer:
-                    print(f"Incorrect. Try again\n")
-                    print(f"What is the product of {a} and {b}? ")
-                    user_answer = get_user_input()
-                print("Correct!\n")
-                score += 1
-                
-                
+                user_answer = get_user_input()
+                if user_answer == correct_answer:
+                    streak += 1
+                    points = 2 if streak >= 2 else 1
+                    score += points
+                    print(f"Correct! (+{points} points)\n")
+                else:
+                    streak = 0
+                    while user_answer != correct_answer:
+                        print(f"Incorrect. Try again\n")
+                        print(f"What is the product of {a} and {b}?")
+                        user_answer = get_user_input()
+                    print("Correct!\n")
 
             elif choice == "4":
-                a,b = generate_division()
-                print(f"What is the quotient of {a} and {b}? ")
-                user_answer = get_user_input()
+                a, b = generate_division()
+                print(f"What is the quotient of {a} and {b}?")
                 correct_answer = a / b
-                while user_answer != correct_answer:
-                    print(f"Incorrect. Try again\n")
-                    print(f"What is the quotient of {a} and {b}? ")
-                    user_answer = get_user_input()
-                print("Correct!\n")
-                score += 1
-                
-            
-            elif choice == "5":
-                a,b,c,d,operator1,operator2,operator3 = generate_pemdas()
-                print(f"What is the result of {a} {operator1} {b} {operator2} {c} {operator3} {d}? ")
                 user_answer = get_user_input()
-                correct_answer = eval(f"{a} {operator1} {b} {operator2} {c} {operator3} {d}")
-                while user_answer != correct_answer:
-                    print(f"Incorrect. Try again\n")
-                    print(f"What is the result of {a} {operator1} {b} {operator2} {c} {operator3} {d}? ")
-                    user_answer = get_user_input()
-                print("Correct!\n")
-                score += 1
-                
-            
-            elif choice == "6":
-                a,b = exponentiation()
-                print(f"What is the result of {a}^{b}? ")
-                user_answer = get_user_input()
-                correct_answer = a ** b
-                while user_answer != correct_answer:
-                    print(f"Incorrect. Try again\n")
-                    print(f"What is the result of {a}^{b}? ")
-                    user_answer = get_user_input()
-                        
-                print("Correct!\n")
-                score += 1
+                if user_answer == correct_answer:
+                    streak += 1
+                    points = 2 if streak >= 2 else 1
+                    score += points
+                    print(f"Correct! (+{points} points)\n")
+                else:
+                    streak = 0
+                    while user_answer != correct_answer:
+                        print(f"Incorrect. Try again\n")
+                        print(f"What is the quotient of {a} and {b}?")
+                        user_answer = get_user_input()
+                    print("Correct!\n")
 
+            elif choice == "5":
+                a, b, c, d, op1, op2, op3 = generate_pemdas()
+                expr = f"({a} {op1} {b}) {op2} ({c} {op3} {d})"
+                print(f"What is the result of {expr}?")
+                correct_answer = eval(expr)
+                user_answer = get_user_input()
+                if user_answer == correct_answer:
+                    streak += 1
+                    points = 2 if streak >= 2 else 1
+                    score += points
+                    print(f"Correct! (+{points} points)\n")
+                else:
+                    streak = 0
+                    while user_answer != correct_answer:
+                        print(f"Incorrect. Try again\n")
+                        print(f"What is the result of {expr}?")
+                        user_answer = get_user_input()
+                    print("Correct!\n")
+
+            elif choice == "6":
+                a, b = exponentiation()
+                print(f"What is the result of {a}^{b}?")
+                correct_answer = a ** b
+                user_answer = get_user_input()
+                if user_answer == correct_answer:
+                    streak += 1
+                    points = 2 if streak >= 2 else 1
+                    score += points
+                    print(f"Correct! (+{points} points)\n")
+                else:
+                    streak = 0
+                    while user_answer != correct_answer:
+                        print(f"Incorrect. Try again\n")
+                        print(f"What is the result of {a}^{b}?")
+                        user_answer = get_user_input()
+                    print("Correct!\n")
 
             elif choice == "7":
                 print(f"Goodbye! Your final score is: {score}")
-                return 
+                return
             else:
                 print("Invalid choice. Please try again.\n")
                 break
 
             repeat = input("Keep practicing this operation? (y/n): ").strip().lower()
             if repeat == "n":
-                break  
+                break
             elif repeat != "y":
                 print("Invalid input. Please enter 'y' or 'n'.")
 
-
-            
+                    
             
 
         

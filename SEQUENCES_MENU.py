@@ -1,13 +1,11 @@
+"""
+This module contains functions to generate and display different types of sequences
+and quizzes the user on them. It includes the arithmetic, geometric, harmonic, and Fibonacci sequences.
+It also provides a menu for the user to select which type of sequence they want to practice.
+"""
 import random
-from CPA1_ELEM_SECTION import get_user_input
+from CPA1_HS_SECTION2 import get_user_input, update_score
 
-#SEQUENCE TOPICS()
-
-
-
-
-
-#SEQUENCE TOPICS()
 def arithmetic_sequence():
     """generate an arithmetic sequence question"""
     start = random.randint(-10, 20)
@@ -46,15 +44,15 @@ def harmonic_sequence():
 
 def fibonacci_sequence():
     """generate a fibonacci sequence question"""
-    sequence = [0, 1, 1]
-    length = random.randint(5, 10)
+    sequence = [0, 1, 1, 2, 3]
+    length = random.randint(7, 50)
     for i in range(2, length):
         sequence.append(sequence[i - 1] + sequence[i - 2])
     print(f"\nWhat is the next term in this sequence?\n{sequence}")
     next_term = sequence[-1] + sequence[-2]
     return next_term
-
-def sequences_menu():
+        
+def sequences_menu(score, streak):
     """Main menu for sequence topics."""
     print("\nWelcome to the Sequences Section!")
 
@@ -67,6 +65,7 @@ def sequences_menu():
         print("5. Exit")
 
         choice = input("Enter the number of the topic you would like to practice: ")
+        
         if choice == "1":
             print("You selected Arithmetic Sequences. Starting quiz...\n")
             correct_answer = arithmetic_sequence()
@@ -75,7 +74,7 @@ def sequences_menu():
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
-
+            score, streak = update_score(True, streak, score)
         elif choice == "2":
             print("You selected Geometric Sequences. Starting quiz...\n")
             correct_answer == geometric_sequence()
@@ -84,6 +83,7 @@ def sequences_menu():
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
+            score, streak = update_score(True, streak, score)
         elif choice == "3":
             print("You selected Harmonic Sequences. Starting quiz...\n")
             correct_answer == harmonic_sequence()
@@ -92,11 +92,18 @@ def sequences_menu():
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
+            score, streak = update_score(True, streak, score)
         elif choice == "4":
             print("You selected Fibonacci Sequences. Starting quiz...\n")
             fibonacci_sequence()
+            user_answer = get_user_input()
+            while user_answer != correct_answer:
+                print("Incorrect. Try again.")
+                user_answer = get_user_input()
+            print("Correct!\n")
+            score, streak = update_score(True, streak, score)
         elif choice == "5":
-            print("Thank you for playing! Goodbye!")
+            print("Thank you for playing! Your final score is {score}. Goodbye!")
             break
         else:
             print("Invalid choice. Please select a valid option.\n")
@@ -106,7 +113,10 @@ def sequences_menu():
             continue
         else:
             break
+            
+    return score, streak
 
 if __name__ == "__main__":
+    score, streak = 0, 0
     sequences_menu()
 
