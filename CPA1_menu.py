@@ -22,6 +22,8 @@ def main_menu():
             CPA1_ELEM_SECTION.math_practice_elem()
         elif choice == '2':
             print("You selected Junior High School. Starting quiz...\n")
+            import CPA1_HS_SECTION2
+            CPA1_HS_SECTION2.math_practice_highschool()
         elif choice == '3':
             print("You selected Senior High School. Starting quiz...\n")
         elif choice == '4':
