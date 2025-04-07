@@ -65,6 +65,20 @@ def sequences_menu():
         print("5. Exit")
 
         choice = input("Enter the number of the topic you would like to practice: ")
+        
+def sequences_menu(score, streak):
+    """Main menu for sequence topics."""
+    print("\nWelcome to the Sequences Section!")
+
+    while True:
+        print("\nSelect a topic:")
+        print("1. Arithmetic Sequences")
+        print("2. Geometric Sequences")
+        print("3. Harmonic Sequences")
+        print("4. Fibonacci Sequences")
+        print("5. Exit")
+
+        choice = input("Enter the number of the topic you would like to practice: ")
         if choice == "1":
             print("You selected Arithmetic Sequences. Starting quiz...\n")
             correct_answer = arithmetic_sequence()
@@ -73,7 +87,7 @@ def sequences_menu():
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
-
+            score, streak = update_score(True, streak, score)
         elif choice == "2":
             print("You selected Geometric Sequences. Starting quiz...\n")
             correct_answer == geometric_sequence()
@@ -82,6 +96,7 @@ def sequences_menu():
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
+            score, streak = update_score(True, streak, score)
         elif choice == "3":
             print("You selected Harmonic Sequences. Starting quiz...\n")
             correct_answer == harmonic_sequence()
@@ -90,9 +105,16 @@ def sequences_menu():
                 print("Incorrect. Try again.")
                 user_answer = get_user_input()
             print("Correct!\n")
+            score, streak = update_score(True, streak, score)
         elif choice == "4":
             print("You selected Fibonacci Sequences. Starting quiz...\n")
             fibonacci_sequence()
+            user_answer = get_user_input()
+            while user_answer != correct_answer:
+                print("Incorrect. Try again.")
+                user_answer = get_user_input()
+            print("Correct!\n")
+            score, streak = update_score(True, streak, score)
         elif choice == "5":
             print("Thank you for playing! Goodbye!")
             break
@@ -104,6 +126,8 @@ def sequences_menu():
             continue
         else:
             break
+            
+    return score, streak
 
 if __name__ == "__main__":
     sequences_menu()
