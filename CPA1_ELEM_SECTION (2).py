@@ -203,7 +203,7 @@ def math_practice_elem():
                 else:
                     streak = 0
                     while user_answer != correct_answer:
-                         print(f"Incorrect. Try again\n")
+                        print(f"Incorrect. Try again\n")
                         print(f"What is the result of {a}^{b}?")
                         user_answer = get_user_input()
                     print("Correct!\n")

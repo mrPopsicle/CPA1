@@ -1,13 +1,11 @@
+"""
+This module contains functions to generate and display different types of sequences
+and quizzes the user on them. It includes the arithmetic, geometric, harmonic, and Fibonacci sequences.
+It also provides a menu for the user to select which type of sequence they want to practice.
+"""
 import random
 from CPA1_HS_SECTION2 import get_user_input
 
-#SEQUENCE TOPICS()
-
-
-
-
-
-#SEQUENCE TOPICS()
 def arithmetic_sequence():
     """generate an arithmetic sequence question"""
     start = random.randint(-10, 20)

@@ -2,126 +2,257 @@ import math
 import random
 from fractions import Fraction
 
-degrees_to_coords = {
-
-    "0 degree": (1, 0),
-    "30 degrees": (math.sqrt(3)/2, 1/2),
-    "45 degrees": (math.sqrt(2)/2, math.sqrt(2)/2),
-    "60 degrees": (1/2, math.sqrt(3)/2),
-    "90 degrees": (0, 1),
-    "120 degrees": (-1/2, math.sqrt(3)/2),
-    "135 degrees": (-math.sqrt(2)/2, math.sqrt(2)/2),
-    "150 degrees": (-math.sqrt(3)/2, 1/2),
-    "180 degrees": (-1, 0),
-    "210 degrees": (-math.sqrt(3)/2, -1/2),
-    "225 degrees": (-math.sqrt(2)/2, -math.sqrt(2)/2),
-    "240 degrees": (-1/2, -math.sqrt(3)/2),
-    "270 degrees": (0, -1),
-    "300 degrees": (1/2, -math.sqrt(3)/2),
-    "315 degrees": (math.sqrt(2)/2, -math.sqrt(2)/2),
-    "330 degrees": (math.sqrt(3)/2, -1/2),
-    "360 degrees": (1, 0)
-}
-
-value_to_angles = {
-    ("sin", 1/2): ["30", "150"],
-    ("sin", math.sqrt(2)/2): ["45", "135"],
-    ("sin", math.sqrt(3)/2): ["60", "120"],
-    ("sin", 1): ["90°"],
-
-    ("cos", 1/2): ["60", "300"],
-    ("cos", math.sqrt(2)/2): ["45", "315"],
-    ("cos", math.sqrt(3)/2): ["30", "330"],
-    ("cos", -0.5): ["120", "240"],
-    ("cos", -1): ["180", "360"],
+def format_value(value):
+    """
+    Format mathematical values in a readable way.
+    Handles special cases like square roots and fractions.
+    """
+    if isinstance(value, str):
+        return value
     
-    ("tan", 1/3): ["30", "210"],
-    ("tan", 1): ["45", "225"],
-    ("tan", math.sqrt(3)): ["60", "240"],
-    ("tan", 0): ["90", "270"],
-    ("tan", -1/3): ["120", "300"],
-    ("tan", -1): ["135", "315"],
-    ("tan", -math.sqrt(3)): ["150", "330"],
-    ("tan", "undefined"): ["180", "360"]
-}
-
-
-def normalize_angle(angle_str):
-    """Converts '390 degrees' or '390' to normalized int like 30."""
-    try:
-        angle = int(angle_str.strip().replace('degrees', '').strip())
-        return angle % 360
-    except:
-        return None
-
+    # Format square roots for readability
+    if value == math.sqrt(2)/2:
+        return "√2/2"
+    elif value == math.sqrt(3)/2:
+        return "√3/2"
+    elif value == math.sqrt(3)/3:
+        return "√3/3"
+    elif value == math.sqrt(3):
+        return "√3"
+    elif value == -math.sqrt(2)/2:
+        return "-√2/2"
+    elif value == -math.sqrt(3)/2:
+        return "-√3/2"
+    elif value == -math.sqrt(3)/3:
+        return "-√3/3"
+    elif value == -math.sqrt(3):
+        return "-√3"
     
+    # For other values, use fractions for cleaner representation
+    return str(Fraction(value).limit_denominator())
 
-def corresponding_angles():
-    """Part of unit_circle quiz. One of the random questions that can be asked."""
-    key = random.choice(list(value_to_angles.keys()))
-    trig_func, value = key
-    angles = value_to_angles[key]
-    if isinstance(value, str):  
-        display_value = value
-    else:
-        display_value = Fraction(value).limit_denominator()
 
-    print(f"\nWhat angle(s) in degrees correspond to {trig_func}(x) = {display_value}?")
-    print("Example format: 30, 150, 390 (minimum 3 answers, can go beyond ±360°)")
+def unit_circle(question_type="random"):
+    """
+    Generate a question about basic trigonometric values (sin, cos, or tan).
+    Returns a tuple: (question, correct_answer)
+    """
+    angles = [0, 30, 45, 60, 90, 120, 135, 150, 180, 
+              210, 225, 240, 270, 300, 315, 330, 360]
+
+    sin_values = {
+         0:  0,
+        30:  Fraction(1, 2),
+        45:  Fraction(math.sqrt(2), 2),
+        60:  Fraction(math.sqrt(3), 2),
+        90:  1,
+       120:  Fraction(math.sqrt(3), 2),
+       135:  Fraction(math.sqrt(2), 2),
+       150:  Fraction(1, 2),
+       180:  0,
+       210: -Fraction(1, 2),
+       225: -Fraction(math.sqrt(2), 2),
+       240: -Fraction(math.sqrt(3), 2),
+       270: -1,
+       300: -Fraction(math.sqrt(3), 2),
+       315: -Fraction(math.sqrt(2), 2),
+       330: -Fraction(1, 2),
+       360:  0
+    }
+
+    cos_values = {
+         0:  1,
+        30:  Fraction(math.sqrt(3), 2),
+        45:  Fraction(math.sqrt(2), 2),
+        60:  Fraction(1, 2),
+        90:  0,
+       120: -Fraction(1, 2),
+       135: -Fraction(math.sqrt(2), 2),
+       150: -Fraction(math.sqrt(3), 2),
+       180: -1,
+       210: -Fraction(math.sqrt(3), 2),
+       225: -Fraction(math.sqrt(2), 2),
+       240: -Fraction(1, 2),
+       270:  0,
+       300:  Fraction(1, 2),
+       315:  Fraction(math.sqrt(2), 2),
+       330:  Fraction(math.sqrt(3), 2),
+       360:  1
+    }
+
+    tan_values = {
+         0:  0,
+        30:  Fraction(math.sqrt(3), 3),
+        45:  1,
+        60:  math.sqrt(3),
+       120: -math.sqrt(3),
+       135: -1,
+       150: -Fraction(math.sqrt(3), 3),
+       180:  0,
+       210:  Fraction(math.sqrt(3), 3),
+       225:  1,
+       240:  math.sqrt(3),
+       300: -math.sqrt(3),
+       315: -1,
+       330: -Fraction(math.sqrt(3), 3),
+       360:  0
+    }
+
+    # Angles where tan is undefined (90° and 270°)
+    undefined_tan_angles = [90, 270]
+
+    # Angles for which tan is defined
+    tan_domain = []
+    for angle in angles:
+        if angle not in undefined_tan_angles:
+            tan_domain.append(angle)
+
+
+    if question_type == "random":
+        question_type = random.choice(["sin", "cos", "tan"])
+
+    angle = random.choice(tan_domain if question_type == "tan" else angles)
+
+    if question_type == "sin":
+        answer = sin_values[angle]
+        question = f"Find the exact value of sin({angle}°)."
+
+    elif question_type == "cos":
+        answer = cos_values[angle]
+        question = f"Find the exact value of cos({angle}°)."
+
+    else:  # tan
+        answer = tan_values[angle]
+        question = f"Find the exact value of tan({angle}°)."
+
+    return (question, answer)
+
+
+def inverse_trig(question_type="random"):
+    """
+    Generate and solve inverse trigonometric function questions.
+
+        
+
+    """
+    # Common values for inverse trig functions
+    arcsin_values = {
+        0: 0, 
+        0.5: 30, 
+        math.sqrt(2)/2: 45, 
+        math.sqrt(3)/2: 60, 
+        1: 90,
+        -0.5: -30,
+        -math.sqrt(2)/2: -45,
+        -math.sqrt(3)/2: -60,
+        -1: -90
+    }
     
-    user_input = input("Your answers (comma separated): ")
-    user_angles = [normalize_angle(a) for a in user_input.split(',')]
-    user_angles = [a for a in user_angles if a is not None]
-
-    if len(user_angles) < 3:
-        print("Please enter at least three valid angles.\n")
-        return
-
+    arccos_values = {
+        1: 0,
+        math.sqrt(3)/2: 30,
+        math.sqrt(2)/2: 45,
+        0.5: 60,
+        0: 90,
+        -0.5: 120,
+        -math.sqrt(2)/2: 135,
+        -math.sqrt(3)/2: 150,
+        -1: 180
+    }
     
-    correct_angles = [int(a) % 360 for a in angles]
-
+    arctan_values = {
+        0: 0,
+        math.sqrt(3)/3: 30,
+        1: 45,
+        math.sqrt(3): 60,
+        -math.sqrt(3)/3: -30,
+        -1: -45,
+        -math.sqrt(3): -60
+    }
     
-    if all(ca in user_angles for ca in correct_angles):
-        print("Correct!\n")
-    else:
-        print(f"Incorrect. Correct answers include: {', '.join(angles)}\n")
-
-def unit_circle():
-    """Quiz for unit circle."""
-    print("\nWelcome to the Unit Circle Quiz!")
-
-    question_types = [corresponding_angles, ]
-
-    random.choice(question_types)()
-
-   
-
-
-
-
-
-
-
-
-def right_triangles():
-    """questions for right triangles."""
-    pass
-
-def trigonometric_identities():
-    """questions for trigonometric identities."""
-    pass
-
-
-def inverse_trigonometric_functions():
-    """questions for inverse trigonometric functions."""
-    pass
-
-def trigonometric_equations():
-    """questions for trigonometric equations."""
-    pass
-
-def trigonometric_functions():
-    """questions for trigonometric functions."""
-    pass
+    # Select question type if random
+    if question_type == "random":
+        question_type = random.choice(["arcsin", "arccos", "arctan"])
     
+    # Choose value and generate question based on type
+    if question_type == "arcsin":
+        value = random.choice(list(arcsin_values.keys()))
+        angle = arcsin_values[value]
+        formatted_value = format_value(value)
+        question = f"Find arcsin({formatted_value}) in degrees."
+        answer = angle
+      
+        
+    elif question_type == "arccos":
+        value = random.choice(list(arccos_values.keys()))
+        angle = arccos_values[value]
+        formatted_value = format_value(value)
+        question = f"Find arccos({formatted_value}) in degrees."
+        answer = angle
+        
+        
+    else:  # arctan
+        value = random.choice(list(arctan_values.keys()))
+        angle = arctan_values[value]
+        formatted_value = format_value(value)
+        question = f"Find arctan({formatted_value}) in degrees."
+        answer = angle
+        
     
+    return (question, answer)
+
+def right_triangle():
+    """
+    Generate and solve a right triangle problem.
+    
+    """
+    # Standard angles for right triangles
+    angle = random.choice([30, 45, 60])
+    
+    # Random side length with nice numbers
+    hypotenuse = random.randint(5, 20)
+    
+    # Calculate other sides
+    if angle == 30:
+        opposite = hypotenuse / 2
+        adjacent = hypotenuse * math.sqrt(3) / 2
+    elif angle == 45:
+        opposite = adjacent = hypotenuse / math.sqrt(2)
+    else:  # angle == 60
+        opposite = hypotenuse * math.sqrt(3) / 2
+        adjacent = hypotenuse / 2
+    
+    # Round for cleaner problems
+    hypotenuse = round(hypotenuse, 2)
+    opposite = round(opposite, 2)
+    adjacent = round(adjacent, 2)
+    
+    # Choose what to solve for
+    problem_type = random.choice(["find_hypotenuse", "find_opposite", "find_adjacent", "find_angle"])
+    
+    if problem_type == "find_hypotenuse":
+        question = f"In a right triangle, if one angle is {angle}° and the adjacent side to this angle is {adjacent}, find the hypotenuse."
+        answer = hypotenuse
+        
+    elif problem_type == "find_opposite":
+        question = f"In a right triangle, if one angle is {angle}° and the hypotenuse is {hypotenuse}, find the side opposite to this angle."
+        answer = opposite
+        
+    elif problem_type == "find_adjacent":
+        question = f"In a right triangle, if one angle is {angle}° and the side opposite to this angle is {opposite}, find the adjacent side."
+        answer = adjacent
+        
+        
+    else:  
+        # Use a different angle to make the problem more interesting and dynamic also
+        if angle == 30:
+            other_angle = 60
+        elif angle == 45:
+            other_angle = 45
+        else:  
+            other_angle = 30
+            
+        question = f"In a right triangle, if the side opposite to an angle is {opposite} and the adjacent side is {adjacent}, find this angle in degrees."
+        answer = other_angle
+       
+    return (question, answer)

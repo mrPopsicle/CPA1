@@ -11,22 +11,19 @@ def main_menu():
         # Options
         print("1. Elementary School")
         print("2. Junior High School")
-        print("3. Senior High School")
-        print("4. Exit")
+        print("3. Exit")
 
         choice = input("Select a level: ")
 
         if choice == '1':
             print("You selected Elementary. Starting quiz...\n")
-            import CPA1_ELEM_SECTION
-            CPA1_ELEM_SECTION.math_practice_elem()
+            import IGNORE
+            IGNORE.math_practice_elem()
         elif choice == '2':
             print("You selected Junior High School. Starting quiz...\n")
             import CPA1_HS_SECTION2
             CPA1_HS_SECTION2.math_practice_highschool()
         elif choice == '3':
-            print("You selected Senior High School. Starting quiz...\n")
-        elif choice == '4':
             print("Thank you for playing! Goodbye!")
             break
         else:
